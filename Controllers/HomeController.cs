@@ -14,5 +14,11 @@ namespace Razzle.Controllers
 
             return View();
         }
+        public ActionResult Foo()
+        {
+            ViewBag.Title = "Foo Page";
+
+            return View();
+        }
     }
 }
