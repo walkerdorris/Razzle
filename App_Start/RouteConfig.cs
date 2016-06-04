@@ -18,6 +18,11 @@ namespace Razzle
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+            routes.MapPageRoute(
+                "One",
+                "PlayerLogin/PlayerOne",
+                "~/PlayerLogin/PlayerOne.cshtml"
+            );
         }
     }
 }
