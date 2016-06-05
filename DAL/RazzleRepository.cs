@@ -45,5 +45,10 @@ namespace Razzle.DAL
         {
             return context.Games.ToList<Game>();
         }
+
+        public void AddPlayer(string player_name)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
