@@ -16,6 +16,12 @@ namespace Razzle.DAL
             context = new RazzleContext();
         }
 
+        public RazzleRepository(RazzleContext _context)
+        {
+            //This allows us to inject a Context into our Repository
+            context = _context;
+        }
+
         public int GetPlayerCount()
         {
             return context.Players.Count();
