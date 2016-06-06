@@ -9,8 +9,8 @@ namespace Razzle.DAL
 {
     public class RazzleContext: DbContext
     {
-        public DbSet<Player> Players { get; set; }
-        public DbSet<Turn> Turns { get; set; }
-        public DbSet<Game> Games { get; set; }
+        public virtual DbSet<Player> Players { get; set; }
+        public virtual DbSet<Turn> Turns { get; set; }
+        public virtual DbSet<Game> Games { get; set; }
     }
 }
