@@ -131,7 +131,7 @@ namespace Razzle.Tests.DAL
         public void RepoEnsureGameCountIsZero()
         {
             //Arrange
-            RazzleRepository repo = new RazzleRepository();
+            RazzleRepository repo = new RazzleRepository(mock_context.Object);
             //Act
             int expected = 0;
             int actual = repo.GetGameCount();
