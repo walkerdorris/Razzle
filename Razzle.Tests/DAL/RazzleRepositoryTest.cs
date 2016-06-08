@@ -109,7 +109,7 @@ namespace Razzle.Tests.DAL
         public void RepoEnsurePlayerCountIsZero()
         {
             //Arrange
-            RazzleRepository repo = new RazzleRepository();
+            ConnectMocksToDataStore();
             //Act
             int expected = 0;
             int actual = repo.GetPlayerCount();
@@ -120,7 +120,7 @@ namespace Razzle.Tests.DAL
         public void RepoEnsureTurnCountIsZero()
         {
             //Arrange
-            RazzleRepository repo = new RazzleRepository();
+            ConnectMocksToDataStore();
             //Act
             int expected = 0;
             int actual = repo.GetTurnCount();
@@ -131,7 +131,7 @@ namespace Razzle.Tests.DAL
         public void RepoEnsureGameCountIsZero()
         {
             //Arrange
-            RazzleRepository repo = new RazzleRepository(mock_context.Object);
+            ConnectMocksToDataStore();
             //Act
             int expected = 0;
             int actual = repo.GetGameCount();
@@ -142,14 +142,100 @@ namespace Razzle.Tests.DAL
         public void RepoEnsureICanAddPlayer()
         {
             //Arrange
-            RazzleRepository repo = new RazzleRepository();
+            ConnectMocksToDataStore();
+
+            //Hijack the call to Players.Add method and put it in the list using the List's Add method.
+            mock_players_table.Setup(m => m.Add(It.IsAny<Player>())).Callback((Player player) => datasource.Add(player));
             //Act
             repo.AddPlayer("Some Name");
 
             int actual = repo.GetPlayerCount();
-            int expected = 1;
+            int expected = 2;
             //Assert
             Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void RepoEnsureICanNotFindOrNull()
+        {
+            //Arrange
+            Player player_in_db = new Player { PlayerID = 1, PlayerName = "Saome Name" };
+            Player player_in_db_2 = new Player { PlayerID = 2, PlayerName = "Some Name 2" };
+            datasource.Add(player_in_db);
+            datasource.Add(player_in_db_2);
+
+            datasource.Remove(player_in_db_2);
+
+            ConnectMocksToDataStore();
+
+            //Act
+            Player found_player = repo.GetPlayerOrNull(5);
+
+            //Assert
+            Assert.IsNull(found_player);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(NotFoundException))]
+        public void RepoEnsureICanNotFind()
+        {
+            //Arrange
+            Player player_in_db = new Player { PlayerID = 1, PlayerName = "Saome Name" };
+            Player player_in_db_2 = new Player { PlayerID = 2, PlayerName = "Some Name 2" };
+            datasource.Add(player_in_db);
+            datasource.Add(player_in_db_2);
+
+            datasource.Remove(player_in_db_2);
+
+            ConnectMocksToDataStore();
+
+            //Act
+            repo.GetPlayer(5);
+        }
+
+        [TestMethod]
+        public void RepoEnsureICanDeletePlayer()
+        {
+            //Arrange
+            Player player_in_db = new Player { PlayerID = 1, PlayerName = "Saome Name" };
+            Player player_in_db_2 = new Player { PlayerID = 2, PlayerName = "Some Name 2" };
+            datasource.Add(player_in_db);
+            datasource.Add(player_in_db_2);
+
+            ConnectMocksToDataStore();
+            mock_players_table.Setup(m => m.Remove(It.IsAny<Player>())).Callback((Player player) => datasource.Remove(player));
+
+            //Act
+            repo.RemovePlayer(1);
+
+            //Assert
+            int expected_count = 1;
+            Assert.AreEqual(expected_count, repo.GetPlayerCount());
+
+            try
+            {
+                repo.GetPlayer(1);
+                Assert.Fail();
+            }
+            catch (Exception) { }
+        }
+
+        [TestMethod]
+        public void RepoEnsureICanGetAPlayer()
+        {
+            //Arrange
+            Player player_in_db = new Player { PlayerID = 1, PlayerName = "Saome Name" };
+            Player player_in_db_2 = new Player { PlayerID = 2, PlayerName = "Some Name 2" };
+            datasource.Add(player_in_db);
+            datasource.Add(player_in_db_2);
+
+            ConnectMocksToDataStore();
+
+            //Act
+            Player found_player = repo.GetPlayer(1);
+
+            //Assert
+            Assert.IsNotNull(found_player);
+            Assert.AreEqual(player_in_db, found_player);
         }
     }
 }
