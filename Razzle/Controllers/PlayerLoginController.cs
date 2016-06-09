@@ -8,17 +8,40 @@ namespace Razzle.Controllers
 {
     public class PlayerLoginController : Controller
     {
-        public ActionResult PlayerOne()
+        //GET Player
+        public ActionResult Index()
         {
-            ViewBag.Title = "PlayerOne Page";
-
             return View();
         }
-        public ActionResult Foo()
-        {
-            ViewBag.Title = "Foo Page";
 
+        //GET Player/Details
+        public ActionResult Details(int id)
+        {
             return View();
         }
+
+        //GET Player/Create
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        //POST Player/Create
+        [HttpPost]
+        public ActionResult Create(FormCollection collection)
+        {
+            try
+            {
+                //ADD INSERT LOGIC
+
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+
     }
 }
