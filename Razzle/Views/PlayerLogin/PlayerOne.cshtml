@@ -1,6 +1,12 @@
-﻿<div class="jumbotron">
-    <h1>PLAYERONE</h1>
-    <div class="col-md-offest-4">
-        <button>Create New Player</button>
-    </div>
-</div>
+﻿@model Razzle.Models.Player
+
+@{ 
+    ViewBag.Title = "PlayerOne";
+}
+
+
+    <h1>PLAYER ONE</h1>
+    <p>Enter Your Name:<input type="text" ng-model="name"></p>
+<p ng-bind="name"></p>
+
+
