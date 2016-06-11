@@ -10,6 +10,7 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using Razzle.DAL;
 using Razzle.Models;
+using System.Web.Mvc;
 
 namespace Razzle.Controllers
 {
@@ -25,15 +26,10 @@ namespace Razzle.Controllers
 
         // GET: api/Games/5
         [ResponseType(typeof(Game))]
-        public IHttpActionResult GetGame(int id)
+        public GameViewModel GetGame(string p1, string p2)
         {
-            Game game = db.Games.Find(id);
-            if (game == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(game);
+            var game = new GameViewModel(p1, p2);
+            return game;
         }
 
         // PUT: api/Games/5
