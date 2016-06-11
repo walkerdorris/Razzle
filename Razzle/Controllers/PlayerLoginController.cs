@@ -11,7 +11,7 @@ namespace Razzle.Controllers
         //GET Player
         public ActionResult Index()
         {
-            return View();
+            return View("PlayerOne");
         }
 
         //GET Player/Details
