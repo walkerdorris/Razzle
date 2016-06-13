@@ -41,7 +41,7 @@ app.controller("GameCtrl", function ($http) {
     self.wordsApiCall = {};
 
     self.wordsApiCall = function () {
-        $http.get("https://wordsapiv1.p.mashape.com/words/test/definitions?accessToken=vrrLJRtlhvmshTV25EKMDHb8q4Bdp1oikJAjsnTaRqNDKf1vDi")
+        $http.get("https://wordsapiv1.p.mashape.com/words/test/definitionsvrrLJRtlhvmshTV25EKMDHb8q4Bdp1oikJAjsnTaRqNDKf1vDi")
         .then(function (response) {
             self.wordsApiCall = response.data;
         });     
