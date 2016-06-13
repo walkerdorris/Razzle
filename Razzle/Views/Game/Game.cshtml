@@ -1,28 +1,40 @@
 ﻿<div ng-app="RazzleApp" ng-controller="GameCtrl as gameCtrl">
+
+    {{gameCtrl.test}}
+    
+    <input type="text" ng-model="name" />
+    {{name}}
+
+    <div>{{gameCtrl.gameBoard.playerOne}}</div>
+    <div>{{gameCtrl.gameBoard.playerTwo}}</div>
+
+    
     <table>
         <tr>
-            <td><div class="content">{{GameBoard[0]}}</div></td>
-            <td><div class="content">{{GameBoard[1]}}</div></td>
-            <td><div class="content">{{GameBoard[2]}}</div></td>
-            <td><div class="content">{{GameBoard[3]}}</div></td>
+            <td><button ng-click="gameCtrl.addLetter(gameCtrl.gameBoard.GameBoard[0])">{{gameCtrl.gameBoard.GameBoard[0]}}</button></td>
+            <td><button ng-click="gameCtrl.addLetter(gameCtrl.gameBoard.GameBoard[1])">{{gameCtrl.gameBoard.GameBoard[1]}}</button></td>
+            <td><button ng-click="gameCtrl.addLetter(gameCtrl.gameBoard.GameBoard[2])">{{gameCtrl.gameBoard.GameBoard[2]}}</button></td>
+            <td><button ng-click="gameCtrl.addLetter(gameCtrl.gameBoard.GameBoard[3])">{{gameCtrl.gameBoard.GameBoard[3]}}</button></td> 
         </tr>
         <tr>
-            <td><div class="content">{{GameBoard[4]}}</div></td>
-            <td><div class="content">{{GameBoard[5]}}</div></td>
-            <td><div class="content">{{GameBoard[6]}}</div></td>
-            <td><div class="content">{{GameBoard[7]}}</div></td>
+            <td><button ng-click="gameCtrl.addLetter(gameCtrl.gameBoard.GameBoard[4])">{{gameCtrl.gameBoard.GameBoard[4]}}</button></td>
+            <td><button ng-click="gameCtrl.addLetter(gameCtrl.gameBoard.GameBoard[5])">{{gameCtrl.gameBoard.GameBoard[5]}}</button></td>
+            <td><button ng-click="gameCtrl.addLetter(gameCtrl.gameBoard.GameBoard[6])">{{gameCtrl.gameBoard.GameBoard[6]}}</button></td>
+            <td><button ng-click="gameCtrl.addLetter(gameCtrl.gameBoard.GameBoard[7])">{{gameCtrl.gameBoard.GameBoard[7]}}</button></td>
         </tr>
         <tr>
-            <td><div class="content">{{GameBoard[8]}}</div></td>
-            <td><div class="content">{{GameBoard[9]}}</div></td>
-            <td><div class="content">{{GameBoard[10]}}</div></td>
-            <td><div class="content">{{GameBoard[11]}}</div></td>
+            <td><button ng-click="gameCtrl.addLetter(gameCtrl.gameBoard.GameBoard[8])">{{gameCtrl.gameBoard.GameBoard[8]}}</button></td>
+            <td><button ng-click="gameCtrl.addLetter(gameCtrl.gameBoard.GameBoard[9])">{{gameCtrl.gameBoard.GameBoard[9]}}</button></td>
+            <td><button ng-click="gameCtrl.addLetter(gameCtrl.gameBoard.GameBoard[10])">{{gameCtrl.gameBoard.GameBoard[10]}}</button></td>
+            <td><button ng-click="gameCtrl.addLetter(gameCtrl.gameBoard.GameBoard[11])">{{gameCtrl.gameBoard.GameBoard[11]}}</button></td>
         </tr>
         <tr>
-            <td><div class="content">{{GameBoard[12]}}</div></td>
-            <td><div class="content">{{GameBoard[13]}}</div></td>
-            <td><div class="content">{{GameBoard[14]}}</div></td>
-            <td><div class="content">{{GameBoard[15]}}</div></td>
+            <td><button ng-click="gameCtrl.addLetter(gameCtrl.gameBoard.GameBoard[12])">{{gameCtrl.gameBoard.GameBoard[12]}}</button></td>
+            <td><button ng-click="gameCtrl.addLetter(gameCtrl.gameBoard.GameBoard[13])">{{gameCtrl.gameBoard.GameBoard[13]}}</button></td>
+            <td><button ng-click="gameCtrl.addLetter(gameCtrl.gameBoard.GameBoard[14])">{{gameCtrl.gameBoard.GameBoard[14]}}</button></td>
+            <td><button ng-click="gameCtrl.addLetter(gameCtrl.gameBoard.GameBoard[15])">{{gameCtrl.gameBoard.GameBoard[15]}}</button></td>
         </tr>
     </table>
+
+    <div>{{gameCtrl.word}}</div>
 </div>
