@@ -9,7 +9,7 @@ namespace Razzle.Controllers
     public class PlayerLoginController : Controller
     {
         //GET Player
-        public ActionResult Index()
+        public ActionResult PlayerOne()
         {
             return View("PlayerOne");
         }
