@@ -14,9 +14,15 @@ namespace Razzle.Controllers
 
             return View();
         }
-        public ActionResult Foo()
+        public ActionResult PlayerOne()
         {
-            ViewBag.Title = "Foo Page";
+            ViewBag.Title = "PlayerOne";
+
+            return View();
+        }
+        public ActionResult Game()
+        {
+            ViewBag.Title = "Game Page";
 
             return View();
         }
