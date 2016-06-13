@@ -10,11 +10,10 @@ app.controller("PlayerCtrl", function () {
 app.controller("GameCtrl", function ($http) {
 
     var self = this;
-
+    //BLANK GAMEBOARD
     self.gameBoard = {};
 
-    self.test = "test";
-
+    //GET BOARD DATA
     self.gameBoard = function () {
         $http.get("/api/games?p1&p2")
             .then(function (response) {
@@ -23,10 +22,29 @@ app.controller("GameCtrl", function ($http) {
     };
     self.gameBoard();
 
-    self.word = [];
+    //ESTABLISH WORD BLOCK
+    self.wordBlock = [];
 
+    //SENDING LETTERS INTO WORDBLOCK
     self.addLetter = function (x) {
-        var formWord = self.word.push(x);
+        var formWord = self.wordBlock.push(x);
         return formWord;
+    };
+
+    //COMBINE LETTERS TO FORM WORD
+    self.combineLetters = function () {
+        var combinedLetters = self.wordBlock.join("");
+        return combinedLetters;
     }
+
+    //CROSS REFERENCE WORDS.API
+    self.wordsApiCall = {};
+
+    self.wordsApiCall = function () {
+        $http.get("https://wordsapiv1.p.mashape.com/words/test/definitions?accessToken=vrrLJRtlhvmshTV25EKMDHb8q4Bdp1oikJAjsnTaRqNDKf1vDi")
+        .then(function (response) {
+            self.wordsApiCall = response.data;
+        });     
+    }
+    self.wordsApiCall();
 });
