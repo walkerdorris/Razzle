@@ -1,10 +1,5 @@
 ﻿<div ng-app="RazzleApp" ng-controller="GameCtrl as gameCtrl">
 
-    {{gameCtrl.test}}
-    
-    <input type="text" ng-model="name" />
-    {{name}}
-
     <div>{{gameCtrl.gameBoard.playerOne}}</div>
     <div>{{gameCtrl.gameBoard.playerTwo}}</div>
 
@@ -36,5 +31,7 @@
         </tr>
     </table>
 
-    <div>{{gameCtrl.word}}</div>
+    <div>{{gameCtrl.combineLetters()}}</div>
+    <button ng-click="gameCtrl.wordsApiCall()">SEND WORD</button>
+    <div>{{gameCtrl.wordsApiCall.definitions}}</div>
 </div>
