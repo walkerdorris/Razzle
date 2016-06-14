@@ -326,8 +326,6 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Game\Game.cshtml" />
     <Content Include="Views\PlayerLogin\PlayerOne.cshtml" />
-    <Content Include="Views\PlayerLogin\PlayerTwo.cshtml" />
-    <Content Include="Views\Home\Foo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

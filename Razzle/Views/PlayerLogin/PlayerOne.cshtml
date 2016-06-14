@@ -6,7 +6,11 @@
 
 <div ng-controller="PlayerCtrl as playerCtrl">
     <h1>PLAYER ONE</h1>
-    <p>Enter Your Name:<input type="text" ng-model="name"></p>
-<p ng-bind="name"></p>
+    <p>Enter Your Name:<input type="text" ng-model="playerCtrl.nameOne"></p>
+<p ng-bind="playerCtrl.nameOne"></p>
+    <h1>PLAYER TWO</h1>
+    <p>Enter Your Name:<input type="text" ng-model="playerCtrl.nameTwo"></p>
+    <p ng-bind="playerCtrl.nameTwo"></p>
+    <button><a href="/Game/Game">GO TO GAMEBOARD</a></button>
 </div>
 

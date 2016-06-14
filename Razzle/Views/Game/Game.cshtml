@@ -1,7 +1,10 @@
-﻿<div ng-app="RazzleApp" ng-controller="GameCtrl as gameCtrl">
+﻿
+<div ng-app="RazzleApp" ng-controller="GameCtrl as gameCtrl" ng-cloak>
 
     <div>{{gameCtrl.gameBoard.playerOne}}</div>
     <div>{{gameCtrl.gameBoard.playerTwo}}</div>
+
+    <div>{{gameCtrl.timer}}</div>
 
     
     <table>
@@ -33,5 +36,5 @@
 
     <div>{{gameCtrl.combineLetters()}}</div>
     <button ng-click="gameCtrl.wordsApiCall()">SEND WORD</button>
-    <div>{{gameCtrl.wordsApiCall.definitions}}</div>
+    <div>{{gameCtrl.wordsApiCall.definitions[0]}}</div>
 </div>
