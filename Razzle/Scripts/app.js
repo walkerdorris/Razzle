@@ -1,6 +1,22 @@
 ﻿var app = angular.module('RazzleApp', []);
 
 
+app.controller("HighScoreCtrl", function() {
+    
+    var self = this;
+
+    self.test = "test";
+
+    self.highScores = function () {
+        $http.get("/api/HighScores")
+            .then(function (response) {
+                self.highScores = response.data;
+            });
+    };
+    self.highScores();
+
+});
+
 app.controller("PlayerCtrl", function () {
 
     var self = this;
@@ -48,6 +64,7 @@ app.controller("GameCtrl", function ($http) {
 
     //COMBINE LETTERS TO FORM WORD
     var combinedWord = "";
+    
 
     self.combineLetters = function () {
         var combinedLetters = self.wordBlock.join("");
@@ -67,21 +84,20 @@ app.controller("GameCtrl", function ($http) {
         })
         .then(function (response) {
             self.wordsApiCall = response.data;
-        }).error(function (response) {
-            self.wordsApiCall = response.status;
+        },function(errorResponse) {
+            console.log("Error", errorResponse)
         })
+        combinedWord = "";
     }
     self.wordsApiCall();
 
-    //USED WORDS AND POINTS
+    //USED WORDS AND POINTS LIST
     self.usedWordsAndPoints = {
         Words: [],
         Points: []
     }
 
-    //POINTS
-    self.points = 0;
-
+    //ADDING WORDS AND POINTS FUNCTION
     self.pointCounter = function(x) {
         if (x.length == 0) {
             self.usedWordsAndPoints.Points.push(0);
@@ -151,5 +167,8 @@ app.controller("GameCtrl", function ($http) {
             self.usedWordsAndPoints.Points.push(16);
             self.usedWordsAndPoints.Words.push(x);
         }
-    }    
+    }
+
+    self.usedWordsAndPointsTester = self.pointCounter("tester");
+ 
 });
