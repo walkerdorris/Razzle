@@ -15,8 +15,8 @@ namespace Razzle.Models
         //Foreign Key for Player - PlayerId; PlayerName
         public virtual Player Player { get; set; }
 
-        public int RoundId { get; set; }
-        public string BoardLayout { get; set; } 
+        //public int RoundId { get; set; }
+        //public string BoardLayout { get; set; } 
         public int Points { get; set; }
         public string Word { get; set; }
 

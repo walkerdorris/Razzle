@@ -27,20 +27,53 @@ app.controller("PlayerCtrl", function () {
 
 });
 
-app.controller("GameCtrl", function ($http) {
+app.controller("GameCtrl", function ($http, $interval) {
 
     var self = this;
 
     //TIMER
-    self.timer="";
+    var playerTurn = false;
+    self.countdown = 30;
 
-    (function countdown(remaining) {
-        if (remaining === 0)
-            location.reload(true);
-        self.timer = remaining;
-        setTimeout(function () { countdown(remaining - 1); }, 1000);
-    })(30);
+    var decrementCountdown = function () {
+        console.log('decrementing counter');
+        console.log(self.countdown);
+        self.countdown = self.countdown -1;
+        
+        if (self.countdown == 0) {
+            if (playerTurn == false) {
+                alert("Player 2: Go!")
+                playerTurn = true;
+            }
+            else {
+                alert("Player 1: Go!")
+                playerTurn = false;
+            }
+        };
+        
+    }
+    var startCountdown = function () {
+        $interval(decrementCountdown, 1000, 30);
+    }
+    startCountdown();
+    //PUSH INFO TO APPROPRIATE PLAYER
 
+    //ROUND
+    var round = 1;
+
+    var roundCounter = function() {
+        if (round == (1 || 3 || 5)) {
+
+        }
+        else if(round == (2 || 4))
+        {
+
+        }
+        else {
+            //$http.post
+        }
+    }
+    
     //BLANK GAMEBOARD
     self.gameBoard = {};
 
@@ -56,9 +89,15 @@ app.controller("GameCtrl", function ($http) {
     //ESTABLISH WORD BLOCK
     self.wordBlock = [];
 
+    //DISABLE SECOND CLICK FOR GAMEBOARD
+  
+
+    self.lastClicked = null;
+
     //SENDING LETTERS INTO WORDBLOCK
-    self.addLetter = function (x) {
-        var formWord = self.wordBlock.push(x);
+    self.addLetter = function (letter, index) {
+        var formWord = self.wordBlock.push(letter);
+        self.lastClicked = index;
         return formWord;
     };
 
@@ -73,7 +112,7 @@ app.controller("GameCtrl", function ($http) {
     }
 
     //CROSS REFERENCE WORDS.API
-    self.wordsApiCall = {};
+    self.apiResponse = {};
 
     self.wordsApiCall = function () {
         $http.get("https://wordsapiv1.p.mashape.com/words/" + combinedWord + "/definitions", {
@@ -83,10 +122,11 @@ app.controller("GameCtrl", function ($http) {
             }
         })
         .then(function (response) {
-            self.wordsApiCall = response.data;
+            self.apiResponse = response.data;
         },function(errorResponse) {
             console.log("Error", errorResponse)
         })
+        self.wordBlock = [];
         combinedWord = "";
     }
     self.wordsApiCall();
@@ -95,6 +135,20 @@ app.controller("GameCtrl", function ($http) {
     self.usedWordsAndPoints = {
         Words: [],
         Points: []
+    }
+
+    //
+    var results = {
+        playerOne: {
+            name: "tim",
+            words: [""],
+            points: 8
+        },
+        playerTwo: {
+            name: "jane",
+            words: ["hello", "there"],
+            points: 10
+        }
     }
 
     //ADDING WORDS AND POINTS FUNCTION
