@@ -44,10 +44,14 @@ app.controller("GameCtrl", function ($http, $interval) {
             if (playerTurn == false) {
                 alert("Player 2: Go!")
                 playerTurn = true;
+                self.countdown = 30;
+                startCountdown();
             }
             else {
                 alert("Player 1: Go!")
                 playerTurn = false;
+                self.countdown = 30;
+                startCountdown();
             }
         };
         
