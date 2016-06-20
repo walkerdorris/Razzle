@@ -35,7 +35,7 @@ app.controller("GameCtrl", function ($http, $interval) {
     var shakeBoard = 0;
 
     var playerTurn = false;
-    self.countdown = 30;
+    //self.countdown = 30;
 
     var decrementCountdown = function () {
         console.log('decrementing counter');
@@ -61,17 +61,11 @@ app.controller("GameCtrl", function ($http, $interval) {
         }
     };
 
-    var changeBoardAfterRound = function () {
-        if (shakeBoard == (2 || 4)) {
-            gameGrid();
-        }
-    };
-    changeBoardAfterRound();
+    //var startCountdown = function () {
+      //  $interval(decrementCountdown, 1000, 30);
+    //}
+    //startCountdown();
 
-    var startCountdown = function () {
-        $interval(decrementCountdown, 1000, 30);
-    }
-    startCountdown();
     //PUSH INFO TO APPROPRIATE PLAYER
 
     //ROUND
@@ -128,6 +122,8 @@ app.controller("GameCtrl", function ($http, $interval) {
     }
 
     //CROSS REFERENCE WORDS.API
+    var wordIsActualWord = false;
+
     self.apiResponse = {};
 
     self.wordsApiCall = function () {
@@ -138,14 +134,29 @@ app.controller("GameCtrl", function ($http, $interval) {
             }
         })
         .then(function (response) {
-            self.apiResponse = response.data;
+            
+            self.apiResponse = "Great! Find another word."//response.data;
+            wordIsActualWord = true;
+            console.log(wordIsActualWord);
+            if (wordIsActualWord == true) {
+                pointCounter("test");
+            };
+            
         },function(errorResponse) {
-            console.log("Error", errorResponse)
+            //console.log(errorResponse.statusText)
+            self.apiResponse = "Word does not exist"
+            console.log("combinedWord", combinedWord);
         })
+        console.log("wordIsActualWord", wordIsActualWord);
+        console.log("combinedWord", combinedWord);
         self.wordBlock = [];
         combinedWord = "";
+        wordIsActualWord = false;
     }
-    self.wordsApiCall();
+    //self.wordsApiCall();
+
+    
+
 
     //USED WORDS AND POINTS LIST
     self.usedWordsAndPoints = {
@@ -156,23 +167,33 @@ app.controller("GameCtrl", function ($http, $interval) {
     //
     var results = {
         playerOne: {
-            name: "tim",
-            words: [""],
-            points: 8
+            name: {},
+            words: [],
+            points: []
         },
         playerTwo: {
-            name: "jane",
-            words: ["hello", "there"],
-            points: 10
+            name: {},
+            words: [],
+            points: []
         }
     }
 
     //ADDING WORDS AND POINTS FUNCTION
-    self.pointCounter = function(x) {
-            self.usedWordsAndPoints.Points.push(x.length);
-            self.usedWordsAndPoints.Words.push(x);
+
+
+    var pointCounter = function(x) {
+            if (playerTurn == false) {
+                results.playerOne.points.push(x.length);
+                results.playerOne.words.push(x);
+                console.log("playerOne", results.playerOne);
+            }
+            else {
+                results.playerTwo.points.push(x.length);
+                results.playerTwo.words.push(x);
+                console.log("playerTwo", results.playerTwo);
+            }
         }
 
-    self.usedWordsAndPointsTester = self.pointCounter("word");
+    //self.usedWordsAndPointsTester = pointCounter(combinedWord);
  
 });
