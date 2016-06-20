@@ -32,30 +32,42 @@ app.controller("GameCtrl", function ($http, $interval) {
     var self = this;
 
     //TIMER
+    var shakeBoard = 0;
+
     var playerTurn = false;
     self.countdown = 30;
 
     var decrementCountdown = function () {
         console.log('decrementing counter');
         console.log(self.countdown);
-        self.countdown = self.countdown -1;
-        
+        self.countdown = self.countdown - 1;
+
         if (self.countdown == 0) {
             if (playerTurn == false) {
+                shakeBoard++;
                 alert("Player 2: Go!")
                 playerTurn = true;
                 self.countdown = 30;
                 startCountdown();
             }
             else {
+                shakeBoard++;
                 alert("Player 1: Go!")
+                gameGrid();
                 playerTurn = false;
                 self.countdown = 30;
                 startCountdown();
             }
-        };
-        
-    }
+        }
+    };
+
+    var changeBoardAfterRound = function () {
+        if (shakeBoard == (2 || 4)) {
+            gameGrid();
+        }
+    };
+    changeBoardAfterRound();
+
     var startCountdown = function () {
         $interval(decrementCountdown, 1000, 30);
     }
@@ -82,13 +94,13 @@ app.controller("GameCtrl", function ($http, $interval) {
     self.gameBoard = {};
 
     //GET BOARD DATA
-    self.gameBoard = function () {
+    var gameGrid = function () {
         $http.get("/api/games?p1&p2")
             .then(function (response) {
                 self.gameBoard = response.data;
             });
     };
-    self.gameBoard();
+    gameGrid();
 
     //ESTABLISH WORD BLOCK
     self.wordBlock = [];
@@ -157,76 +169,10 @@ app.controller("GameCtrl", function ($http, $interval) {
 
     //ADDING WORDS AND POINTS FUNCTION
     self.pointCounter = function(x) {
-        if (x.length == 0) {
-            self.usedWordsAndPoints.Points.push(0);
+            self.usedWordsAndPoints.Points.push(x.length);
             self.usedWordsAndPoints.Words.push(x);
         }
-        else if (x.length == 1) {
-            self.usedWordsAndPoints.Points.push(1);
-            self.usedWordsAndPoints.Words.push(x);
-        }
-        else if (x.length == 2) {
-            self.usedWordsAndPoints.Points.push(2);
-            self.usedWordsAndPoints.Words.push(x);
-        }
-        else if (x.length == 3) {
-            self.usedWordsAndPoints.Points.push(3);
-            self.usedWordsAndPoints.Words.push(x);
-        }
-        else if (x.length == 4) {
-            self.usedWordsAndPoints.Points.push(4);
-            self.usedWordsAndPoints.Words.push(x);
-        }
-        else if (x.length == 5) {
-            self.usedWordsAndPoints.Points.push(5);
-            self.usedWordsAndPoints.Words.push(x);
-        }
-        else if (x.length == 6) {
-            self.usedWordsAndPoints.Points.push(6);
-            self.usedWordsAndPoints.Words.push(x);
-        }
-        else if (x.length == 7) {
-            self.usedWordsAndPoints.Points.push(7);
-            self.usedWordsAndPoints.Words.push(x);
-        }
-        else if (x.length == 8) {
-            self.usedWordsAndPoints.Points.push(8);
-            self.usedWordsAndPoints.Words.push(x);
-        }
-        else if (x.length == 9) {
-            self.usedWordsAndPoints.Points.push(9);
-            self.usedWordsAndPoints.Words.push(x);
-        }
-        else if (x.length == 10) {
-            self.usedWordsAndPoints.Points.push(10);
-            self.usedWordsAndPoints.Words.push(x);
-        }
-        else if (x.length == 11) {
-            self.usedWordsAndPoints.Points.push(11);
-            self.usedWordsAndPoints.Words.push(x);
-        }
-        else if (x.length == 12) {
-            self.usedWordsAndPoints.Points.push(12);
-            self.usedWordsAndPoints.Words.push(x);
-        }
-        else if (x.length == 13) {
-            self.usedWordsAndPoints.Points.push(13);
-            self.usedWordsAndPoints.Words.push(x);
-        }
-        else if (x.length == 14) {
-            self.usedWordsAndPoints.Points.push(14);
-            self.usedWordsAndPoints.Words.push(x);
-        }
-        else if (x.length == 15) {
-            self.usedWordsAndPoints.Points.push(15);
-            self.usedWordsAndPoints.Words.push(x);
-        }
-        else {
-            self.usedWordsAndPoints.Points.push(16);
-            self.usedWordsAndPoints.Words.push(x);
-        }
-    }
 
-    self.usedWordsAndPointsTester = self.pointCounter("tester");
+    self.usedWordsAndPointsTester = self.pointCounter("word");
  
 });
