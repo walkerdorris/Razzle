@@ -1,5 +1,6 @@
 namespace Razzle.Migrations
 {
+    using Models;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
@@ -26,6 +27,12 @@ namespace Razzle.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+
+            context.GameResults.AddOrUpdate(x => x.GameResultId,
+                new GameResult() { GameResultId = 1, Player = "Jon Bon Jovi", Points = 8 },
+                new GameResult() { GameResultId = 1, Player = "Al Franken", Points = 6 }
+
+                );
         }
     }
 }
