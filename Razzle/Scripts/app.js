@@ -1,4 +1,35 @@
-﻿var app = angular.module('RazzleApp', []);
+﻿var app = angular.module('RazzleApp', ["ngRoute"]);
+
+app.config(function ($routeProvider) {
+     $routeProvider
+        .when("/", {
+            templateUrl: "Templates/StartUp.html",
+            controller: "StartUpCtrl as startUpCtrl"
+        })
+        .when("/Game", {
+            templateUrl: "/Templates/Game.html",
+            controller: "GameCtrl as gameCtrl"
+        })
+        .when("/HighScore", {
+            templateUrl: "Templates/HighScore.html",
+            controller: "HighScoreCtrl as highScoreCtrl"
+        })
+  	    .when("/Player", {
+  	        templateUrl: "Templates/Player.html",
+  	        controller: "GameCtrl as gameCtrl"
+  	    })
+        .when("/Rules", {
+            templateUrl: "Templates/Rules.html",
+            controller: "GameCtrl as gameCtrl"
+        })
+  		.otherwise({ redirectTo: "/" });
+});
+
+app.controller("StartUpCtrl", function () {
+
+    var self = this;
+
+});
 
 
 app.controller("HighScoreCtrl", function($http) {

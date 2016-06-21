@@ -22,6 +22,7 @@ namespace Razzle
 
             bundles.Add(new ScriptBundle("~/bundles/angular").Include(
                         "~/Scripts/angular.js",
+                        "~/Scripts/angular-route.js",
                         "~/Scripts/app.js"
                         ));
 
