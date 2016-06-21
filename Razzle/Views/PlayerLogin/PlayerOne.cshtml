@@ -4,13 +4,13 @@
     ViewBag.Title = "PlayerOne";
 }
 
-<div ng-controller="PlayerCtrl as playerCtrl">
+<div ng-controller="GameCtrl as gameCtrl">
     <h1>PLAYER ONE</h1>
-    <p>Enter Your Name:<input type="text" ng-model="playerCtrl.nameOne"></p>
-<p ng-bind="playerCtrl.nameOne"></p>
+    <p>Enter Your Name:<input type="text" ng-model="gameCtrl.nameOne"></p>
+<p ng-bind="gameCtrl.nameOne"></p>
     <h1>PLAYER TWO</h1>
-    <p>Enter Your Name:<input type="text" ng-model="playerCtrl.nameTwo"></p>
-    <p ng-bind="playerCtrl.nameTwo"></p>
+    <p>Enter Your Name:<input type="text" ng-model="gameCtrl.nameTwo"></p>
+    <p ng-bind="gameCtrl.nameTwo"></p>
     <button><a href="/Game/Game">GO TO GAMEBOARD</a></button>
 </div>
 
