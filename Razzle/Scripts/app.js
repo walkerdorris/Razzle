@@ -31,6 +31,10 @@ app.controller("GameCtrl", function ($http, $interval) {
 
     var self = this;
 
+    self.nameOne = "";
+
+    self.nameTwo = "";
+
     //TIMER
     var shakeBoard = 0;
 
