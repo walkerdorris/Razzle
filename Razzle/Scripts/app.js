@@ -1,19 +1,24 @@
 ﻿var app = angular.module('RazzleApp', []);
 
 
-app.controller("HighScoreCtrl", function() {
+app.controller("HighScoreCtrl", function($http) {
     
     var self = this;
 
     self.test = "test";
 
-    self.highScores = function () {
-        $http.get("/api/HighScores")
+    self.rawGameResults = {};
+
+    var getGameResults = function () {
+        $http.get("/api/GameResults")
             .then(function (response) {
-                self.highScores = response.data;
+                self.rawGameResults = response.data;
+                console.log("Success!")
+            }, function (errorResponse) {
+                console.log("Error!");
             });
     };
-    self.highScores();
+    getGameResults();
 
 });
 
