@@ -13,7 +13,7 @@ namespace Razzle.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201606041737165_InitialCreate"; }
+            get { return "201606211650090_InitialCreate"; }
         }
         
         string IMigrationMetadata.Source
