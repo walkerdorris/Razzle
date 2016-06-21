@@ -217,7 +217,6 @@
     <Compile Include="Controllers\GamesController.cs" />
     <Compile Include="Controllers\HighScoreController.cs" />
     <Compile Include="Controllers\RulesController.cs" />
-    <Compile Include="Controllers\TurnController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\GameController.cs" />
     <Compile Include="Controllers\PlayerLoginController.cs" />
@@ -243,7 +242,7 @@
     <Compile Include="Models\GameViewModel.cs" />
     <Compile Include="Models\HighScoreViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\MasterGame.cs" />
+    <Compile Include="Models\GameResult.cs" />
     <Compile Include="Models\Turn.cs" />
     <Compile Include="Models\Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

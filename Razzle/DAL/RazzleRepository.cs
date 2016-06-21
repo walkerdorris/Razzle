@@ -22,72 +22,61 @@ namespace Razzle.DAL
             context = _context;
         }
 
-        public int GetPlayerCount()
+        public int GetGameResultCount()
         {
-            return context.Players.Count();
+            return context.GameResults.Count();
         }
 
-        public int GetTurnCount()
+        public List<GameResult> GetGameResults()
         {
-            return context.Turns.Count();
+            return context.GameResults.ToList<GameResult>();
         }
 
-        public int GetGameCount()
-        {
-            return context.Turns.Count();
-        }
 
-        public List<Player> GetPlayers()
+        public void AddPlayerToGameResult(string _player)
         {
-            return context.Players.ToList<Player>();
-        }
-
-        public List<Turn> GetTurns()
-        {
-            return context.Turns.ToList<Turn>();
-        }
-
-        public List<Game> GetGames()
-        {
-            return context.Games.ToList<Game>();
-        }
-
-        public void AddPlayer(string player_name)
-        {
-            Player new_player = new Player { PlayerName = player_name };
-            context.Players.Add(new_player);
+            GameResult new_player = new GameResult { Player = _player };
+            context.GameResults.Add(new_player);
             context.SaveChanges();
         }
 
-        public Player GetPlayer(int _player_id)
+        public void AddPointsToGameResult(int _points)
         {
-            //return context.Players.Find(_player_id); //Requires explicit mocking of the DbSet.Find method
-            Player player;
+            GameResult new_points = new GameResult { Points = _points };
+            context.GameResults.Add(new_points);
+            context.SaveChanges();
+        }
+
+        public GameResult GetGameResult (int _gameresult_id)
+        {
+            //return context.GameResults.Find(_gameresult_id); //Requires explicit mocking of the DbSet.Find method
+            GameResult gameresult;
             try
             {
-                player = context.Players.First(i => i.PlayerID == _player_id);
-            } catch (Exception)
+                gameresult = context.GameResults.First(i => i.GameResultId == _gameresult_id);
+            }
+            catch (Exception)
             {
                 throw new NotFoundException();
             }
-            return player;// ConnectMockstoDatastore made this possible
+            return gameresult;// ConnectMockstoDatastore made this possible
         }
 
-        public void RemovePlayer(int _player_id)
+        public void RemoveGameResult(int _gameresult_id)
         {
-            Player some_player = context.Players.First(i => i.PlayerID == _player_id);
+            GameResult some_gameresult = context.GameResults.First(i => i.GameResultId == _gameresult_id);
 
-            context.Players.Remove(some_player);
+            context.GameResults.Remove(some_gameresult);
             context.SaveChanges();
         }
 
-        public Player GetPlayerOrNull(int _player_id)
+        public GameResult GetGameResultOrNull(int _gameresult_id)
         {
-            return context.Players.FirstOrDefault(i => i.PlayerID == _player_id);
+            return context.GameResults.FirstOrDefault(i => i.GameResultId == _gameresult_id);
         }
 
-        //Create a Player
+        //Create a GameResult
 
-        //Delete a Player
+        //Delete a GameResult
     }
 }

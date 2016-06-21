@@ -10,40 +10,40 @@ using System.Threading.Tasks;
 namespace Razzle.Tests.Models
 {
     [TestClass]
-    public class PlayerTests
+    public class GameResultTests
     {
         [TestMethod]
-        public void PlayerEnsureICanCreateInstance()
+        public void GameResultEnsureICanCreateInstance()
         {
-            Player p = new Player();
-            Assert.IsNotNull(p);
+            GameResult g = new GameResult();
+            Assert.IsNotNull(g);
         }
 
         [TestMethod]
         [ExpectedException(typeof(Exception))]
-        public void PlayerEnsureICanSaveAPlayer()
+        public void GameResultEnsureICanSaveAGameResult()
         {
             //Assert
             RazzleContext context = new RazzleContext();
-            Player p = new Player();
+            GameResult g = new GameResult();
             //Act
-            context.Players.Add(p);
+            context.GameResults.Add(g);
             context.SaveChanges();
             //Assert
-            Assert.AreEqual(1, context.Players.Find().PlayerID);
+            Assert.AreEqual(1, context.GameResults.Find().GameResultId);
         }
         [TestMethod]
-        public void PlayerInsureInstanceIsValid1()
+        public void GameResultEnsureInstanceIsValid1()
         {
             //Arrange
             RazzleContext context = new RazzleContext();
-            Player p = new Player();
+            GameResult g = new GameResult();
 
-            p.PlayerName = "My First Player";
+            g.Player = "My First Player";
             //Act
-            context.Players.Add(p);
+            context.GameResults.Add(g);
             //Assert
-            Assert.IsTrue(context.Players.Count() > 1);
+            Assert.IsTrue(context.GameResults.Count() > 1);
         }
         [TestMethod]
         public void PlayerInsureInstanceIsValid2()
@@ -51,11 +51,11 @@ namespace Razzle.Tests.Models
             //Arrange
             RazzleContext context = new RazzleContext();
             //Different way of Initializing a Player
-            Player p = new Player { PlayerName = "Another Player" };
+            GameResult g = new GameResult { Player = "Another Player" };
             //Act
-            context.Players.Add(p);
+            context.GameResults.Add(g);
             //Assert
-            Assert.IsTrue(context.Players.Count() > 1);
+            Assert.IsTrue(context.GameResults.Count() > 1);
         }
     }
 }
