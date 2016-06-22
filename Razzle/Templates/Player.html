@@ -1,10 +1,15 @@
-﻿<div ng-controller="GameCtrl as gameCtrl">
+﻿<div ng-controller="PlayerCtrl as playerCtrl">
     <h1>PLAYER ONE</h1>
-    <p>Enter Your Name:<input type="text" ng-model="gameCtrl.nameOne"></p>
-<p ng-bind="gameCtrl.nameOne"></p>
+    <p>Enter Your Name:<input type="text" ng-model="value"></p>
+<p ng-bind="value"></p>
     <h1>PLAYER TWO</h1>
-    <p>Enter Your Name:<input type="text" ng-model="gameCtrl.nameTwo"></p>
-    <p ng-bind="gameCtrl.nameTwo"></p>
-    <button><a href="#/Game">GO TO GAMEBOARD</a></button>
+    <p>Enter Your Name:<input type="text" ng-model="playerCtrl.nameTwo"></p>
+    <p ng-bind="playerCtrl.nameTwo"></p>
+
+    <input type="text" ng-model="playerCtrl.nameOne" />
+    <input type="text" ng-model="playerCtrl.nameTwo" />
+    <button ng-click="playerCtrl.setPlayerValue(playerCtrl.nameOne, playerCtrl.nameTwo)">Set value</button>
+
+    <button ng-click="setPlayerOne(value)"><a href="#/Game">GO TO GAMEBOARD</a></button>
 </div>
 

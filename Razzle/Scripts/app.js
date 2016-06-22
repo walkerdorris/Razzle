@@ -16,13 +16,46 @@ app.config(function ($routeProvider) {
         })
   	    .when("/Player", {
   	        templateUrl: "Templates/Player.html",
-  	        controller: "GameCtrl as gameCtrl"
+  	        controller: "PlayerCtrl as playerCtrl"
   	    })
         .when("/Rules", {
             templateUrl: "Templates/Rules.html",
             controller: "GameCtrl as gameCtrl"
         })
   		.otherwise({ redirectTo: "/" });
+});
+
+app.factory('players', function(){
+
+    /*self = this;
+
+    var storedObject;
+    return {
+        set: function (o) {
+            self.storedObject = o;
+        },
+        get: function () {
+            return self.storedObject;
+        }
+    };*/
+
+    self = this;
+
+    self.allPlayers = {
+        playerOne: "",
+        playerTwo: ""
+    };
+
+
+    return {
+        set: function (oneplayer, twoplayer) {
+            self.allPlayers.playerOne = oneplayer;
+            self.allPlayers.playerTwo = twoplayer;
+        },
+        get: function () {
+            return self.allPlayers;
+        }
+    };
 });
 
 app.controller("StartUpCtrl", function () {
@@ -53,24 +86,33 @@ app.controller("HighScoreCtrl", function($http) {
 
 });
 
-app.controller("PlayerCtrl", function () {
+app.controller("PlayerCtrl", function (players) {
 
     var self = this;
 
-    self.nameOne = "";
+    /*self.setValue = function (value) {
+        players.set(value);
+    };*/
 
+    self.nameOne = "";
     self.nameTwo = "";
 
+    self.setPlayerValue = function (_oneplayer, _twoplayer) {
+        players.set(_oneplayer, _twoplayer);
+    }
 });
 
-app.controller("GameCtrl", function ($http, $interval) {
+app.controller("GameCtrl", function (players, $http, $interval) {
 
     var self = this;
 
-    self.nameOne = "";
+    /*self.getValue = function () {
+        self.value = players.get();
+    };*/
 
-    self.nameTwo = "";
-
+    self.getPlayerValue = function () {
+        self.playerValue = players.get();
+    }
     //TIMER
     var shakeBoard = 0;
 
