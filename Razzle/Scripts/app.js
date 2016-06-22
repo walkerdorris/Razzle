@@ -224,7 +224,7 @@ app.controller("GameCtrl", function (players, $http, $interval) {
         .then(function (response) {
             console.log(response.data.word);
             var validWord = response.data.word;
-            self.tryThis.push(validWord);
+            self.pointCounter(validWord);
             self.apiResponse = "Great! Find another word."//response.data;
         }, function (errorResponse) {
             self.apiResponse = "Word does not exist! Try again."
@@ -261,8 +261,8 @@ app.controller("GameCtrl", function (players, $http, $interval) {
 
 
     self.pointCounter = function(x) {
-                self.displayedWordsAndPoints.points.push(x.length);
-                self.displayedWordsAndPoints.words.push(x);
+        self.displayedWordsAndPoints.words.push(x);
+        self.displayedWordsAndPoints.points.push(x.length);
         };
 
     //self.usedWordsAndPointsTester = pointCounter(combinedWord);
