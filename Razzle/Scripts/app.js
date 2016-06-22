@@ -116,11 +116,13 @@ app.controller("GameCtrl", function (players, $http, $interval) {
         self.playerValue = players.get();
     }
     self.getPlayerValue();
+
     //TIMER
+
     var shakeBoard = 0;
 
-    var playerTurn = false;
-    //self.countdown = 30;
+    var playerTurn = false;//This means it's PlayerOne's turn
+    self.countdown = 30;
 
     var decrementCountdown = function () {
         console.log('decrementing counter');
@@ -129,6 +131,9 @@ app.controller("GameCtrl", function (players, $http, $interval) {
 
         if (self.countdown == 0) {
             if (playerTurn == false) {
+                addToPlayerPointBank(self.AddedTotal);
+                self.AddedTotal = "";
+                self.displayedWordsAndPoints = {words: [],points: []};
                 shakeBoard++;
                 alert("Player 2: Go!")
                 playerTurn = true;
@@ -136,6 +141,9 @@ app.controller("GameCtrl", function (players, $http, $interval) {
                 startCountdown();
             }
             else {
+                addToPlayerPointBank(self.AddedTotal);
+                self.AddedTotal = "";
+                self.displayedWordsAndPoints = {words: [],points: []};
                 shakeBoard++;
                 alert("Player 1: Go!")
                 gameGrid();
@@ -146,28 +154,10 @@ app.controller("GameCtrl", function (players, $http, $interval) {
         }
     };
 
-    //var startCountdown = function () {
-      //  $interval(decrementCountdown, 1000, 30);
-    //}
-    //startCountdown();
-
-    //PUSH INFO TO APPROPRIATE PLAYER
-
-    //ROUND
-    var round = 1;
-
-    var roundCounter = function() {
-        if (round == (1 || 3 || 5)) {
-
-        }
-        else if(round == (2 || 4))
-        {
-
-        }
-        else {
-            //$http.post
-        }
+    var startCountdown = function () {
+        $interval(decrementCountdown, 1000, 30);
     }
+    startCountdown();
     
     //BLANK GAMEBOARD
     self.gameBoard = {};
@@ -185,8 +175,6 @@ app.controller("GameCtrl", function (players, $http, $interval) {
     self.wordBlock = [];
 
     //DISABLE SECOND CLICK FOR GAMEBOARD
-  
-
     self.lastClicked = null;
 
     //SENDING LETTERS INTO WORDBLOCK
@@ -224,8 +212,15 @@ app.controller("GameCtrl", function (players, $http, $interval) {
         .then(function (response) {
             console.log(response.data.word);
             var validWord = response.data.word;
-            self.pointCounter(validWord);
-            self.apiResponse = "Great! Find another word."//response.data;
+            if (self.displayedWordsAndPoints.words.indexOf(validWord) == -1) {
+                self.pointCounter(validWord);
+                applyGetSum();
+                self.apiResponse = "Great! Find another word."
+            }
+            else {
+                self.apiResponse = "Word has already been used! Try again!"  
+            }
+            //response.data;
         }, function (errorResponse) {
             self.apiResponse = "Word does not exist! Try again."
         })
@@ -240,7 +235,35 @@ app.controller("GameCtrl", function (players, $http, $interval) {
         Points: []
     }
 
-    //
+    //ADD POINTS IN ARRAY
+
+    //POINT BANK TO SEND TO FINAL POINTS
+
+    self.playerPointBank = {
+        playerOne: [],
+        playerTwo: []
+    }
+
+    var addToPlayerPointBank = function (points) {
+        if (playerTurn == false) {
+            self.playerPointBank.playerOne.push(points)
+        }
+        else {
+            self.playerPointBank.playerTwo.push(points)
+        }
+    };
+
+    //DISPLAYING TOTAL POINTS PER ROUND
+    self.AddedTotal = "";
+
+    var getSumOfArray = function(total, num) {
+        return total + num;
+    };
+    var applyGetSum = function () {
+        self.AddedTotal = self.displayedWordsAndPoints.points.reduce(getSumOfArray);
+    };
+
+    //FINAL TALLY
     var results = {
         playerOne: {
             name: self.playerValue.playerOne,
