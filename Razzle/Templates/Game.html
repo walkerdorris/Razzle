@@ -1,7 +1,10 @@
 ﻿<div ng-app="RazzleApp" ng-controller="GameCtrl as gameCtrl">
 
-    <button ng-click="gameCtrl.getPlayerValue()">Get value</button>
-    Value: {{gameCtrl.playerValue}}
+    <div>Player One:{{gameCtrl.playerValue.playerOne}}</div>
+    
+    <div>Player Two:{{gameCtrl.playerValue.playerTwo}}</div>
+    
+
 
     <div>{{gameCtrl.timer}}</div>
     

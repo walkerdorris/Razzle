@@ -110,9 +110,12 @@ app.controller("GameCtrl", function (players, $http, $interval) {
         self.value = players.get();
     };*/
 
+    self.playerValue = {};
+
     self.getPlayerValue = function () {
         self.playerValue = players.get();
     }
+    self.getPlayerValue();
     //TIMER
     var shakeBoard = 0;
 
