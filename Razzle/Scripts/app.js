@@ -198,51 +198,42 @@ app.controller("GameCtrl", function (players, $http, $interval) {
 
     //COMBINE LETTERS TO FORM WORD
     var combinedWord = "";
-    
 
+    
     self.combineLetters = function () {
         var combinedLetters = self.wordBlock.join("");
         combinedWord = combinedLetters;
         return combinedWord;
     }
 
-    //CROSS REFERENCE WORDS.API
-    var wordIsActualWord = false;
+    self.testCombinedWord = combinedWord;
 
+
+    self.tryThis = [];
+
+    //CROSS REFERENCE WORDS.API
     self.apiResponse = {};
 
     self.wordsApiCall = function () {
-        $http.get("https://wordsapiv1.p.mashape.com/words/" + combinedWord + "/definitions", {
+        $http.get("https://wordsapiv1.p.mashape.com/words/" + combinedWord + "/also", {
             headers: {
                 "X-Mashape-Key": "vrrLJRtlhvmshTV25EKMDHb8q4Bdp1oikJAjsnTaRqNDKf1vDi",
                 "Accept": "application/json"
             }
         })
         .then(function (response) {
-            
+            console.log(response.data.word);
+            var validWord = response.data.word;
+            self.tryThis.push(validWord);
             self.apiResponse = "Great! Find another word."//response.data;
-            wordIsActualWord = true;
-            console.log(wordIsActualWord);
-            if (wordIsActualWord == true) {
-                pointCounter("test");
-            };
-            
-        },function(errorResponse) {
-            //console.log(errorResponse.statusText)
-            self.apiResponse = "Word does not exist"
-            console.log("combinedWord", combinedWord);
+        }, function (errorResponse) {
+            self.apiResponse = "Word does not exist! Try again."
         })
-        console.log("wordIsActualWord", wordIsActualWord);
-        console.log("combinedWord", combinedWord);
+        //RESET FOR NEXT WORD
         self.wordBlock = [];
         combinedWord = "";
-        wordIsActualWord = false;
     }
-    //self.wordsApiCall();
-
-    
-
-
+     
     //USED WORDS AND POINTS LIST
     self.usedWordsAndPoints = {
         Words: [],
@@ -252,32 +243,27 @@ app.controller("GameCtrl", function (players, $http, $interval) {
     //
     var results = {
         playerOne: {
-            name: {},
-            words: [],
-            points: []
+            name: self.playerValue.playerOne,
+            points: ""
         },
         playerTwo: {
-            name: {},
-            words: [],
-            points: []
+            name: self.playerValue.playerTwo,
+            points: ""
         }
     }
 
     //ADDING WORDS AND POINTS FUNCTION
 
+    self.displayedWordsAndPoints = {
+        words: [],
+        points: []
+    };
 
-    var pointCounter = function(x) {
-            if (playerTurn == false) {
-                results.playerOne.points.push(x.length);
-                results.playerOne.words.push(x);
-                console.log("playerOne", results.playerOne);
-            }
-            else {
-                results.playerTwo.points.push(x.length);
-                results.playerTwo.words.push(x);
-                console.log("playerTwo", results.playerTwo);
-            }
-        }
+
+    self.pointCounter = function(x) {
+                self.displayedWordsAndPoints.points.push(x.length);
+                self.displayedWordsAndPoints.words.push(x);
+        };
 
     //self.usedWordsAndPointsTester = pointCounter(combinedWord);
  
