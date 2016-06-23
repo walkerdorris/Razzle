@@ -117,15 +117,29 @@ app.controller("GameCtrl", function (players, $http, $interval) {
     }
     self.getPlayerValue();
 
+    //END OF GAME
+    var gameCounter = 0;
+    console.log(gameCounter, "GAMECOUNTER");
+
+    var endOfGame = function () {
+        if (gameCounter == 6) {
+            enterFinalScore();
+            alert("Game Over!");
+            return true;
+        }
+        return false;
+    }
+    endOfGame();
+
     //TIMER
 
     var shakeBoard = 0;
 
     var playerTurn = false;//This means it's PlayerOne's turn
-    self.countdown = 30;
+    self.countdown = 10;
 
     var decrementCountdown = function () {
-        console.log('decrementing counter');
+        //console.log('decrementing counter');
         console.log(self.countdown);
         self.countdown = self.countdown - 1;
 
@@ -135,9 +149,13 @@ app.controller("GameCtrl", function (players, $http, $interval) {
                 self.AddedTotal = "";
                 self.displayedWordsAndPoints = {words: [],points: []};
                 shakeBoard++;
+                gameCounter++;
                 alert("Player 2: Go!")
+                self.wordBlock = [];
+                combinedWord = "";
+                self.apiResponse = {};
                 playerTurn = true;
-                self.countdown = 30;
+                self.countdown = 10;
                 startCountdown();
             }
             else {
@@ -145,19 +163,24 @@ app.controller("GameCtrl", function (players, $http, $interval) {
                 self.AddedTotal = "";
                 self.displayedWordsAndPoints = {words: [],points: []};
                 shakeBoard++;
+                gameCounter++;
                 alert("Player 1: Go!")
+                self.wordBlock = [];
+                combinedWord = "";
+                self.apiResponse = {};
                 gameGrid();
                 playerTurn = false;
-                self.countdown = 30;
-                startCountdown();
+                self.countdown = 10;
+                startCountdown();               
             }
         }
     };
 
     var startCountdown = function () {
-        $interval(decrementCountdown, 1000, 30);
+        $interval(decrementCountdown, 1000, 10);
     }
     startCountdown();
+    console.log("after countdown call");
     
     //BLANK GAMEBOARD
     self.gameBoard = {};
@@ -170,6 +193,8 @@ app.controller("GameCtrl", function (players, $http, $interval) {
             });
     };
     gameGrid();
+
+
 
     //ESTABLISH WORD BLOCK
     self.wordBlock = [];
@@ -227,6 +252,7 @@ app.controller("GameCtrl", function (players, $http, $interval) {
         //RESET FOR NEXT WORD
         self.wordBlock = [];
         combinedWord = "";
+        self.lastClicked = null;
     }
      
     //USED WORDS AND POINTS LIST
@@ -263,8 +289,13 @@ app.controller("GameCtrl", function (players, $http, $interval) {
         self.AddedTotal = self.displayedWordsAndPoints.points.reduce(getSumOfArray);
     };
 
+    var enterFinalScore = function () {
+        self.results.playerOne.points = self.playerPointBank.playerOne.reduce(getSumOfArray);
+        self.results.playerTwo.points = self.playerPointBank.playerTwo.reduce(getSumOfArray);
+    }
+
     //FINAL TALLY
-    var results = {
+    self.results = {
         playerOne: {
             name: self.playerValue.playerOne,
             points: ""
@@ -289,5 +320,5 @@ app.controller("GameCtrl", function (players, $http, $interval) {
         };
 
     //self.usedWordsAndPointsTester = pointCounter(combinedWord);
- 
+    console.log("END OF JS CODE");
 });
