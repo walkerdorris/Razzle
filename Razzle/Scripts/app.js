@@ -124,7 +124,13 @@ app.controller("GameCtrl", function (players, $http, $interval) {
     var endOfGame = function () {
         if (gameCounter == 6) {
             enterFinalScore();
-            alert("Game Over!");
+            if (self.results.playerOne.points > self.results.playerTwo.points) {
+                alert (self.results.playerOne.name + " WINS!")
+            } else if (self.results.playerOne.points < self.results.playerTwo.points) {
+                alert(self.results.playerTwo.name + " WINS!")
+            } else {
+                alert(self.results.playerOne.name + " AND " + self.results.playerTwo.name + " TIED.")
+            }
             return true;
         }
         return false;
@@ -164,14 +170,16 @@ app.controller("GameCtrl", function (players, $http, $interval) {
                 self.displayedWordsAndPoints = {words: [],points: []};
                 shakeBoard++;
                 gameCounter++;
-                alert("Player 1: Go!")
-                self.wordBlock = [];
-                combinedWord = "";
-                self.apiResponse = {};
-                gameGrid();
-                playerTurn = false;
-                self.countdown = 10;
-                startCountdown();               
+                if (!endOfGame()) {
+                    alert("Player 1: Go!")
+                    self.wordBlock = [];
+                    combinedWord = "";
+                    self.apiResponse = {};
+                    gameGrid();
+                    playerTurn = false;
+                    self.countdown = 10;
+                    startCountdown();
+                }                              
             }
         }
     };
