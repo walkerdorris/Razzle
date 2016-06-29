@@ -108,13 +108,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DAL\RazzleRepositoryTest.cs" />
-    <Compile Include="Models\GameTests.cs" />
     <Compile Include="Models\PlayerTests.cs" />
-    <Compile Include="Models\TurnTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
     <Compile Include="Controllers\ValuesControllerTest.cs" />
-    <Compile Include="Sandbox\CarTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config" />

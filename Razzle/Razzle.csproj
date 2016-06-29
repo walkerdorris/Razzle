@@ -216,11 +216,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\GameResultsController.cs" />
     <Compile Include="Controllers\GamesController.cs" />
-    <Compile Include="Controllers\HighScoreController.cs" />
-    <Compile Include="Controllers\RulesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\GameController.cs" />
-    <Compile Include="Controllers\PlayerLoginController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="DAL\NotFoundException.cs" />
     <Compile Include="DAL\RazzleContext.cs" />
@@ -235,18 +231,12 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\Game.cs" />
     <Compile Include="Models\GameViewModel.cs" />
-    <Compile Include="Models\HighScoreViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\GameResult.cs" />
-    <Compile Include="Models\Turn.cs" />
-    <Compile Include="Models\Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
-    <Compile Include="Sandbox\Car.cs" />
-    <Compile Include="Sandbox\IOne.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -329,10 +319,6 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Game\Game.cshtml" />
-    <Content Include="Views\PlayerLogin\PlayerOne.cshtml" />
-    <Content Include="Views\HighScore\HighScore.cshtml" />
-    <Content Include="Views\Rules\Rules.cshtml" />
     <Content Include="Templates\HighScore.html" />
     <Content Include="Templates\Game.html" />
     <Content Include="Templates\Player.html" />
@@ -341,7 +327,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\MVCGame\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
