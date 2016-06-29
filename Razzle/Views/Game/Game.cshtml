@@ -1,0 +1,41 @@
+﻿
+<div ng-app="RazzleApp" ng-controller="GameCtrl as gameCtrl" ng-cloak>
+
+    <div>{{gameCtrl.gameBoard.playerOne}}</div>
+    <div>{{gameCtrl.gameBoard.playerTwo}}</div>
+
+    <div>{{gameCtrl.timer}}</div>
+    
+    <div>{{gameCtrl.countdown}}</div>
+
+    <table>
+        <tr>
+            <td><button ng-click="gameCtrl.addLetter(gameCtrl.gameBoard.GameBoard[0], 0)" ng-disabled="gameCtrl.lastClicked == 0">{{gameCtrl.gameBoard.GameBoard[0]}}</button></td>
+            <td><button ng-click="gameCtrl.addLetter(gameCtrl.gameBoard.GameBoard[1], 1)" ng-disabled="gameCtrl.lastClicked == 1">{{gameCtrl.gameBoard.GameBoard[1]}}</button></td>
+            <td><button ng-click="gameCtrl.addLetter(gameCtrl.gameBoard.GameBoard[2], 2)" ng-disabled="gameCtrl.lastClicked == 2">{{gameCtrl.gameBoard.GameBoard[2]}}</button></td>
+            <td><button ng-click="gameCtrl.addLetter(gameCtrl.gameBoard.GameBoard[3], 3)" ng-disabled="gameCtrl.lastClicked == 3">{{gameCtrl.gameBoard.GameBoard[3]}}</button></td> 
+        </tr>
+        <tr>
+            <td><button ng-click="gameCtrl.addLetter(gameCtrl.gameBoard.GameBoard[4], 4)" ng-disabled="gameCtrl.lastClicked == 4">{{gameCtrl.gameBoard.GameBoard[4]}}</button></td>
+            <td><button ng-click="gameCtrl.addLetter(gameCtrl.gameBoard.GameBoard[5], 5)" ng-disabled="gameCtrl.lastClicked == 5">{{gameCtrl.gameBoard.GameBoard[5]}}</button></td>
+            <td><button ng-click="gameCtrl.addLetter(gameCtrl.gameBoard.GameBoard[6], 6)" ng-disabled="gameCtrl.lastClicked == 6">{{gameCtrl.gameBoard.GameBoard[6]}}</button></td>
+            <td><button ng-click="gameCtrl.addLetter(gameCtrl.gameBoard.GameBoard[7], 7)" ng-disabled="gameCtrl.lastClicked == 7">{{gameCtrl.gameBoard.GameBoard[7]}}</button></td>
+        </tr>
+        <tr>
+            <td><button ng-click="gameCtrl.addLetter(gameCtrl.gameBoard.GameBoard[8], 8)" ng-disabled="gameCtrl.lastClicked == 8">{{gameCtrl.gameBoard.GameBoard[8]}}</button></td>
+            <td><button ng-click="gameCtrl.addLetter(gameCtrl.gameBoard.GameBoard[9], 9)" ng-disabled="gameCtrl.lastClicked == 9">{{gameCtrl.gameBoard.GameBoard[9]}}</button></td>
+            <td><button ng-click="gameCtrl.addLetter(gameCtrl.gameBoard.GameBoard[10], 10)" ng-disabled="gameCtrl.lastClicked == 10">{{gameCtrl.gameBoard.GameBoard[10]}}</button></td>
+            <td><button ng-click="gameCtrl.addLetter(gameCtrl.gameBoard.GameBoard[11], 11)" ng-disabled="gameCtrl.lastClicked == 11">{{gameCtrl.gameBoard.GameBoard[11]}}</button></td>
+        </tr>
+        <tr>
+            <td><button ng-click="gameCtrl.addLetter(gameCtrl.gameBoard.GameBoard[12], 12)" ng-disabled="gameCtrl.lastClicked == 12">{{gameCtrl.gameBoard.GameBoard[12]}}</button></td>
+            <td><button ng-click="gameCtrl.addLetter(gameCtrl.gameBoard.GameBoard[13], 13)" ng-disabled="gameCtrl.lastClicked == 13">{{gameCtrl.gameBoard.GameBoard[13]}}</button></td>
+            <td><button ng-click="gameCtrl.addLetter(gameCtrl.gameBoard.GameBoard[14], 14)" ng-disabled="gameCtrl.lastClicked == 14">{{gameCtrl.gameBoard.GameBoard[14]}}</button></td>
+            <td><button ng-click="gameCtrl.addLetter(gameCtrl.gameBoard.GameBoard[15], 15)" ng-disabled="gameCtrl.lastClicked == 15">{{gameCtrl.gameBoard.GameBoard[15]}}</button></td>
+        </tr>
+    </table>
+
+    <div>{{gameCtrl.combineLetters()}}</div>
+    <button ng-click="gameCtrl.wordsApiCall()">SEND WORD</button>
+    <div>{{gameCtrl.apiResponse}}</div>
+</div>

@@ -1,0 +1,90 @@
+﻿<div ng-app="RazzleApp" id="gameBackground">
+    <div class="row">
+        <div class="col-md-6">
+            <table>
+                <tr>
+                    <td><button class="btn btn-sq-lg btn-success" ng-click="gameCtrl.addLetter(gameCtrl.gameBoard.GameBoard[0], 0)" ng-disabled="gameCtrl.lastClicked.indexOf(0) != -1">{{gameCtrl.gameBoard.GameBoard[0]}}</button></td>
+                    <td><button class="btn btn-sq-lg btn-success" ng-click="gameCtrl.addLetter(gameCtrl.gameBoard.GameBoard[1], 1)" ng-disabled="gameCtrl.lastClicked.indexOf(1) != -1">{{gameCtrl.gameBoard.GameBoard[1]}}</button></td>
+                    <td><button class="btn btn-sq-lg btn-success" ng-click="gameCtrl.addLetter(gameCtrl.gameBoard.GameBoard[2], 2)" ng-disabled="gameCtrl.lastClicked.indexOf(2) != -1">{{gameCtrl.gameBoard.GameBoard[2]}}</button></td>
+                    <td><button class="btn btn-sq-lg btn-success" ng-click="gameCtrl.addLetter(gameCtrl.gameBoard.GameBoard[3], 3)" ng-disabled="gameCtrl.lastClicked.indexOf(3) != -1">{{gameCtrl.gameBoard.GameBoard[3]}}</button></td>
+                </tr>
+                <tr>
+                    <td><button class="btn btn-sq-lg btn-success" ng-click="gameCtrl.addLetter(gameCtrl.gameBoard.GameBoard[4], 4)" ng-disabled="gameCtrl.lastClicked.indexOf(4) != -1">{{gameCtrl.gameBoard.GameBoard[4]}}</button></td>
+                    <td><button class="btn btn-sq-lg btn-success" ng-click="gameCtrl.addLetter(gameCtrl.gameBoard.GameBoard[5], 5)" ng-disabled="gameCtrl.lastClicked.indexOf(5) != -1">{{gameCtrl.gameBoard.GameBoard[5]}}</button></td>
+                    <td><button class="btn btn-sq-lg btn-success" ng-click="gameCtrl.addLetter(gameCtrl.gameBoard.GameBoard[6], 6)" ng-disabled="gameCtrl.lastClicked.indexOf(6) != -1">{{gameCtrl.gameBoard.GameBoard[6]}}</button></td>
+                    <td><button class="btn btn-sq-lg btn-success" ng-click="gameCtrl.addLetter(gameCtrl.gameBoard.GameBoard[7], 7)" ng-disabled="gameCtrl.lastClicked.indexOf(7) != -1">{{gameCtrl.gameBoard.GameBoard[7]}}</button></td>
+                </tr>
+                <tr>
+                    <td><button class="btn btn-sq-lg btn-success" ng-click="gameCtrl.addLetter(gameCtrl.gameBoard.GameBoard[8], 8)" ng-disabled="gameCtrl.lastClicked.indexOf(8) != -1">{{gameCtrl.gameBoard.GameBoard[8]}}</button></td>
+                    <td><button class="btn btn-sq-lg btn-success" ng-click="gameCtrl.addLetter(gameCtrl.gameBoard.GameBoard[9], 9)" ng-disabled="gameCtrl.lastClicked.indexOf(9) != -1">{{gameCtrl.gameBoard.GameBoard[9]}}</button></td>
+                    <td><button class="btn btn-sq-lg btn-success" ng-click="gameCtrl.addLetter(gameCtrl.gameBoard.GameBoard[10], 10)" ng-disabled="gameCtrl.lastClicked.indexOf(10) != -1">{{gameCtrl.gameBoard.GameBoard[10]}}</button></td>
+                    <td><button class="btn btn-sq-lg btn-success" ng-click="gameCtrl.addLetter(gameCtrl.gameBoard.GameBoard[11], 11)" ng-disabled="gameCtrl.lastClicked.indexOf(11) != -1">{{gameCtrl.gameBoard.GameBoard[11]}}</button></td>
+                </tr>
+                <tr>
+                    <td><button class="btn btn-sq-lg btn-success" ng-click="gameCtrl.addLetter(gameCtrl.gameBoard.GameBoard[12], 12)" ng-disabled="gameCtrl.lastClicked.indexOf(12) != -1">{{gameCtrl.gameBoard.GameBoard[12]}}</button></td>
+                    <td><button class="btn btn-sq-lg btn-success" ng-click="gameCtrl.addLetter(gameCtrl.gameBoard.GameBoard[13], 13)" ng-disabled="gameCtrl.lastClicked.indexOf(13) != -1">{{gameCtrl.gameBoard.GameBoard[13]}}</button></td>
+                    <td><button class="btn btn-sq-lg btn-success" ng-click="gameCtrl.addLetter(gameCtrl.gameBoard.GameBoard[14], 14)" ng-disabled="gameCtrl.lastClicked.indexOf(14) != -1">{{gameCtrl.gameBoard.GameBoard[14]}}</button></td>
+                    <td><button class="btn btn-sq-lg btn-success" ng-click="gameCtrl.addLetter(gameCtrl.gameBoard.GameBoard[15], 15)" ng-disabled="gameCtrl.lastClicked.indexOf(15) != -1">{{gameCtrl.gameBoard.GameBoard[15]}}</button></td>
+                </tr>
+            </table>
+            <button id="clickButton" class="btn btn-sq-lg btn-primary" ng-click="gameCtrl.wordsApiCall()">SEND WORD</button>
+        </div>
+
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-6" id="playerOne">Player One:{{gameCtrl.playerValue.playerOne}}</div>
+                <div class="col-md-6" id="playerTwo">Player Two:{{gameCtrl.playerValue.playerTwo}}</div>
+            </div>
+            <br />
+            <br />
+            <div id="timer">TIMER:{{gameCtrl.countdown}}</div>
+            
+
+            <br />
+                
+            </div>
+            <br/>
+            <div class="row">
+                <div class="col-md-6"></div>
+                <div class="col-md-6" id="enteredLetters">You Entered:{{gameCtrl.combineLetters()}}</div>
+                <br/>
+                <div id="wordResponse">{{gameCtrl.apiResponse}}</div>
+                <br/>
+                <h3>Used Words: {{gameCtrl.displayedWordsAndPoints.words}}</h3>
+                <h3>Points: {{gameCtrl.displayedWordsAndPoints.points}}</h3>
+                <h3 id="pointsThisRound">POINTS THIS ROUND:{{gameCtrl.AddedTotal}} </h3>
+            </div>
+        </div>      
+    </div>    
+    
+
+    <!--<table>
+        <tr>
+            <td><button ng-click="gameCtrl.addLetter(gameCtrl.gameBoard.GameBoard[0], 0)" ng-disabled="gameCtrl.lastClicked.indexOf(0) != -1">{{gameCtrl.gameBoard.GameBoard[0]}}</button></td>
+            <td><button ng-click="gameCtrl.addLetter(gameCtrl.gameBoard.GameBoard[1], 1)" ng-disabled="gameCtrl.lastClicked.indexOf(1) != -1">{{gameCtrl.gameBoard.GameBoard[1]}}</button></td>
+            <td><button ng-click="gameCtrl.addLetter(gameCtrl.gameBoard.GameBoard[2], 2)" ng-disabled="gameCtrl.lastClicked.indexOf(2) != -1">{{gameCtrl.gameBoard.GameBoard[2]}}</button></td>
+            <td><button ng-click="gameCtrl.addLetter(gameCtrl.gameBoard.GameBoard[3], 3)" ng-disabled="gameCtrl.lastClicked.indexOf(3) != -1">{{gameCtrl.gameBoard.GameBoard[3]}}</button></td> 
+        </tr>
+        <tr>
+            <td><button ng-click="gameCtrl.addLetter(gameCtrl.gameBoard.GameBoard[4], 4)" ng-disabled="gameCtrl.lastClicked.indexOf(4) != -1">{{gameCtrl.gameBoard.GameBoard[4]}}</button></td>
+            <td><button ng-click="gameCtrl.addLetter(gameCtrl.gameBoard.GameBoard[5], 5)" ng-disabled="gameCtrl.lastClicked.indexOf(5) != -1">{{gameCtrl.gameBoard.GameBoard[5]}}</button></td>
+            <td><button ng-click="gameCtrl.addLetter(gameCtrl.gameBoard.GameBoard[6], 6)" ng-disabled="gameCtrl.lastClicked.indexOf(6) != -1">{{gameCtrl.gameBoard.GameBoard[6]}}</button></td>
+            <td><button ng-click="gameCtrl.addLetter(gameCtrl.gameBoard.GameBoard[7], 7)" ng-disabled="gameCtrl.lastClicked.indexOf(7) != -1">{{gameCtrl.gameBoard.GameBoard[7]}}</button></td>
+        </tr>
+        <tr>
+            <td><button ng-click="gameCtrl.addLetter(gameCtrl.gameBoard.GameBoard[8], 8)" ng-disabled="gameCtrl.lastClicked.indexOf(8) != -1">{{gameCtrl.gameBoard.GameBoard[8]}}</button></td>
+            <td><button ng-click="gameCtrl.addLetter(gameCtrl.gameBoard.GameBoard[9], 9)" ng-disabled="gameCtrl.lastClicked.indexOf(9) != -1">{{gameCtrl.gameBoard.GameBoard[9]}}</button></td>
+            <td><button ng-click="gameCtrl.addLetter(gameCtrl.gameBoard.GameBoard[10], 10)" ng-disabled="gameCtrl.lastClicked.indexOf(10) != -1">{{gameCtrl.gameBoard.GameBoard[10]}}</button></td>
+            <td><button ng-click="gameCtrl.addLetter(gameCtrl.gameBoard.GameBoard[11], 11)" ng-disabled="gameCtrl.lastClicked.indexOf(11) != -1">{{gameCtrl.gameBoard.GameBoard[11]}}</button></td>
+        </tr>
+        <tr>
+            <td><button ng-click="gameCtrl.addLetter(gameCtrl.gameBoard.GameBoard[12], 12)" ng-disabled="gameCtrl.lastClicked.indexOf(12) != -1">{{gameCtrl.gameBoard.GameBoard[12]}}</button></td>
+            <td><button ng-click="gameCtrl.addLetter(gameCtrl.gameBoard.GameBoard[13], 13)" ng-disabled="gameCtrl.lastClicked.indexOf(13) != -1">{{gameCtrl.gameBoard.GameBoard[13]}}</button></td>
+            <td><button ng-click="gameCtrl.addLetter(gameCtrl.gameBoard.GameBoard[14], 14)" ng-disabled="gameCtrl.lastClicked.indexOf(14) != -1">{{gameCtrl.gameBoard.GameBoard[14]}}</button></td>
+            <td><button ng-click="gameCtrl.addLetter(gameCtrl.gameBoard.GameBoard[15], 15)" ng-disabled="gameCtrl.lastClicked.indexOf(15) != -1">{{gameCtrl.gameBoard.GameBoard[15]}}</button></td>
+        </tr>
+    </table>-->
+
+    
+
+

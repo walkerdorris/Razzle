@@ -1,0 +1,26 @@
+﻿<div>
+  
+
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4"><h1>HIGH SCORES:</h1></div>
+        <div class="col-md-4"></div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <table id="highScoreTable">
+                <tr>
+                    <th class="highScoreHeader">PLAYER</th>
+                    <th class="highScoreHeader">SCORE</th>
+                </tr>
+                <tr ng-repeat="x in highScoreCtrl.rawGameResults | orderBy: '-Points'">
+                    <td id="playerColumn">{{x.Player}}</td>
+                    <td id="pointsColumn">{{x.Points}}</td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+
